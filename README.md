@@ -19,6 +19,8 @@ Each notebook is special. Since they're mainly written for myself they go deeper
 * [Recurrent Neural Networks (RNN) with Gated Recurrent Unit (GRU)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/rnn_gru_explainer.ipynb)
 * [Recurrent Neural Networks (RNN) with Long Short-Term Memory (LSTM)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/rnn_lstm_explainer.ipynb)
 * [Graph Neural Network (GNN) with Graph Convolutional Network (GCN)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/gnn_gcn_explainer.ipynb)
+* [Graph Neural Network (GNN) with Graph Attention Network (GAT)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/gnn_gat_explainer.ipynb)
+
 
 ## Viewing Notebooks
 
