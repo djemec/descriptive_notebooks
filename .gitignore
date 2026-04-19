@@ -42,3 +42,6 @@ PROCESSED_DATA/*
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+CLAUDE.md
+.claude/*
