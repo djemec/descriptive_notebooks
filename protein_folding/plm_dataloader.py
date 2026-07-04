@@ -38,6 +38,9 @@ class ProteinBatchLoader:
         with np.load(self.shard_order[self.shard_index], allow_pickle=False) as shard:
             self.input_ids = shard['input_ids'].astype(np.int64)
             self.residue_mask = shard['residue_mask'].astype(np.bool_)
+            self.asym_id = shard['asym_id'].astype(np.int64)
+            self.residue_index = shard['residue_index'].astype(np.int64)
+            self.mol_type = shard['mol_type'].astype(np.int64)
         self.order = self.numpy_random.permutation(len(self.input_ids))
         if self.split != 'train':
             self.order = np.arange(len(self.input_ids))
@@ -53,23 +56,47 @@ class ProteinBatchLoader:
     def _take_examples(self, count):
         input_pieces = []
         mask_pieces = []
+        asym_pieces = []
+        residue_index_pieces = []
+        mol_type_pieces = []
         while count > 0:
             remaining = len(self.order) - self.position
             take = min(count, remaining)
             indices = self.order[self.position:self.position + take]
             input_pieces.append(self.input_ids[indices])
             mask_pieces.append(self.residue_mask[indices])
+            asym_pieces.append(self.asym_id[indices])
+            residue_index_pieces.append(self.residue_index[indices])
+            mol_type_pieces.append(self.mol_type[indices])
             self.position += take
             count -= take
             if self.position >= len(self.order):
                 self._advance_shard()
-        return np.concatenate(input_pieces), np.concatenate(mask_pieces)
+        return (
+            np.concatenate(input_pieces),
+            np.concatenate(mask_pieces),
+            np.concatenate(asym_pieces),
+            np.concatenate(residue_index_pieces),
+            np.concatenate(mol_type_pieces),
+        )
 
     def next_batch(self):
-        input_ids_array, residue_mask_array = self._take_examples(self.batch_size)
+        (
+            input_ids_array,
+            residue_mask_array,
+            asym_id_array,
+            residue_index_array,
+            mol_type_array,
+        ) = self._take_examples(self.batch_size)
         input_ids = torch.tensor(input_ids_array, dtype=torch.long, device=self.device)
         residue_mask = torch.tensor(residue_mask_array, dtype=torch.bool, device=self.device)
+        asym_id = torch.tensor(asym_id_array, dtype=torch.long, device=self.device)
+        residue_index = torch.tensor(residue_index_array, dtype=torch.long, device=self.device)
+        mol_type = torch.tensor(mol_type_array, dtype=torch.long, device=self.device)
         return {
             'input_ids': input_ids,
             'residue_mask': residue_mask,
+            'asym_id': asym_id,
+            'residue_index': residue_index,
+            'mol_type': mol_type,
         }
