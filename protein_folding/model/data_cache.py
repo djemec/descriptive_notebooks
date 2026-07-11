@@ -10,7 +10,7 @@ import requests
 from Bio.PDB import MMCIFParser
 from Bio.PDB.Polypeptide import is_aa
 
-from protein_tokenizer import ESM_PAD_ID, RES_PAD_ID, ProteinTokenizer
+from model.protein_tokenizer import ESM_PAD_ID, RES_PAD_ID, ProteinTokenizer
 
 
 RCSB_SEARCH_URL = 'https://search.rcsb.org/rcsbsearch/v2/query'

@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
-from protein_tokenizer import (
+from model.protein_tokenizer import (
     ESM_PAD_ID,
     MASK_ID,
     MLM_IGNORE_INDEX,
