@@ -21,6 +21,7 @@ Each notebook is special. Since they're mainly written for myself they go deeper
 * [Graph Neural Network (GNN) with Graph Convolutional Network (GCN)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/gnn_gcn_explainer.ipynb)
 * [Graph Neural Network (GNN) with Graph Attention Network (GAT)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/gnn_gat_explainer.ipynb)
 * [Reinforcement Learning (RL) as applied in Group Relative Policy Optimization (GRPO)](https://nbviewer.org/github/djemec/descriptive_notebooks/blob/main/rl_grpo_explainer.ipynb)
+* [Protein Folding Notebook Series](https://github.com/djemec/descriptive_notebooks/tree/main/protein_folding)
 
 
 ## Viewing Notebooks
